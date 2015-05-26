@@ -1,0 +1,21 @@
+/* 
+    Document   : home
+    Created on : May 26, 2015, 12:29:55 PM
+    Author     : ilagjay
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.mad-logo {
+    height: 100%;
+    float: left;
+}
+
+.mad-company-name {
+    float: left;
+    margin-left: 20px;
+}
