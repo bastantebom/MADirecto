@@ -21,9 +21,14 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="<?php echo base_url()?> ">Home</a></li>
         <li><a href="<?php echo base_url().'index.php/Register/'?> ">Register</a></li>
-        <?php if(isset($user)){ 
-        //echo $user['type'];
-        ?>
+        <?php 
+        if(isset($user)){ 
+         if($user['type']==1){ 
+        ?>     
+           <li><a href="<?php echo base_url().'index.php/Code/'?> ">Code</a></li>
+        <?php    
+         }
+        ?> 
         <li><a href="<?php echo base_url().'index.php/Authenticate/logout'?> ">Logout</a></li>
         <?php } else {?>
         <li><a href="<?php echo base_url().'index.php/Login/'?> ">Login</a></li>

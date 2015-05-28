@@ -9,11 +9,16 @@ class User extends CI_Model {
             //echo $u.$p;
             $where = array('username' => $u, 'password' => $p);
             $query = $this->db->get_where('user',$where);
-            if($this->db->count_all_results()==1){
+            if($query->num_rows()==1){
                return $query->row();
             }else{
-                return ;
+               return ;
             }
+        }
+        
+        public function saveRegistration($user){
+            $this->db->insert('user',$user);
+            return $this->db->insert_id();
         }
        
 }
