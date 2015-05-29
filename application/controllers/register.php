@@ -17,31 +17,40 @@ class Register extends CI_Controller {
         }
          
 	public function index(){
+          if($this->session->userdata('user')){    
             $data['company_name'] = $this->config->item('company_name');
             $data['company_address'] = $this->config->item('company_address');
+            $session_access = array('page'=>'marketing');
+            $this->session->set_userdata('access', $session_access);
+            $data['access'] = $this->session->userdata('access');
             $data['user'] = $this->session->userdata('user');
             $this->load->view('register',$data);
+          } else{
+            $data['company_name'] = $this->config->item('company_name');
+            $data['company_address'] = $this->config->item('company_address');
+            $this->load->view('register',$data); 
+          } 
 	}
         
         public function validateCode(){
             //echo "testr";
-            if($this->session->userdata('user')){
-                //echo "testr";
+            //if($this->session->userdata('user')){
+                //echo $this->input->post('validationCode');
                echo $this->Entry->checkCodeExist($this->input->post('validationCode'));
-            }else{
-                redirect('login','refresh');
-            }
+            //}else{
+            //    redirect('login','refresh');
+            //}
         }
         
         public function checkCredential(){
-            if($this->session->userdata('user')){
+            //if($this->session->userdata('user')){
               $result = $this->User->exist($this->input->post('u'),md5($this->input->post('p')));
               echo json_encode($result);
-            }
+           // }
         }
         
        public function save(){
-           if($this->session->userdata('user')){
+          //if($this->session->userdata('user')){
                 $this->load->library('form_validation');
                 $this->form_validation->set_rules('user[lastname]', 'Lastname', 'trim|required|xss_clean');
                 $this->form_validation->set_rules('user[firstname]', 'Firstname', 'trim|required|xss_clean');
@@ -60,14 +69,44 @@ class Register extends CI_Controller {
                 if ($this->form_validation->run() == FALSE){
                     echo json_encode(array('msg' => validation_errors()));
                 }else{
-                    $insert_id = $this->User->saveRegistration($this->input->post('user'));
-                    $this->Entry->grabEntry($this->input->post('validation-code'),$insert_id);
-                     //echo $this->input->post('validation-code');
-                    //$this->input->post('validation-code')
-                    echo json_encode(array('msg' => 'Successfully submitted and Added to Entry'));
+                    //save new User
+                    $result = $this->User->saveRegistration($this->input->post('user'));
+                    if(!$this->session->userdata('user') && $result){
+                          $session_user = array(
+                                    'id'=>$result->id,
+                                    'type'=>$result->type,
+                                    'lastname'=>$result->lastname,
+                                    'firstname'=>$result->firstname,
+                                    'middlename'=>$result->middlename
+                                    );
+                        $this->session->set_userdata('user',$session_user);
+                        $session_access = array('page'=>'marketing');
+                        $this->session->set_userdata('access', $session_access);
+                        $this->session->userdata('access');                     
+                    }else {
+                          $session_user=array('id'=>'');
+                    }
+                      //Grab the code for the user
+                      $affectedRows = $this->Entry->grabEntry($this->input->post('validation-code'),$result->id);
+                      if($affectedRows==1){
+                        //update the points of the active user for that Vehicle 
+                        $updateChanges = $this->Entry->updatePoints($this->input->post('vehicle-cde'), "Active");
+                          if($updateChanges>0){
+                            //check if the active member of this vehicle is graduate
+                            $graduateAffected = $this->Entry->isGraduate($this->input->post('vehicle-cde'), "Active");
+                            $errorMessage = "OK";
+                          }else {
+                            $errorMessage = "Invalid Codes already in used"; 
+                          }
+                      }else {
+                          $errorMessage = "Invalid Codes already in used";
+                      }
+                   
                 }
-           }
+                echo json_encode(array('msg' => $errorMessage, 'newUser'=> $session_user));
        }
+       //}  
+       
 }
 
 /* End of file welcome.php */

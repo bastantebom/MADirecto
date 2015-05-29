@@ -100,10 +100,20 @@ Register.checkCredentialUse=function(){
         if($.isEmptyObject(user)){
            $('#registrationForm').ajaxSubmit({
                success:  function(data){
-                   alert(data);
+                     var newUserParse = $.parseJSON(data);
+                     if($.isEmptyObject(newUserParse.newUser)){
+                       $(".registration-success").html("<h5>Registration is successful.</h5>");  
+                     }
+                     else{
+                      // console.log("-------------------------------------" + newUser.newUser);
+                       var name = newUserParse.newUser.firstname +" "+ newUserParse.newUser.lastname;
+                       $(".registration-success").html("<h5>Registration is successful. You can continue as <a href='"+$('#base-url').val()+"index.php/Subsidiary/marketing'> " +  name + "</a></h5>");
+                     }
+                   $("input[type=text]").val("");  
+                   $('.registration-success').css('visibility','visible').hide().fadeIn().removeClass('hidden');
                },
                error: function(data){
-                   alert(data);
+                   console.log(data);
                }
            });
         }else{

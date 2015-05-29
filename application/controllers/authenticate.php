@@ -29,7 +29,11 @@ class Authenticate extends CI_Controller {
                     $this->load->view('login',$data);
                 }else{
                 //Go to private area
-                    redirect('subsidiary', 'refresh');
+                    $session_access = array('page'=>'global');
+                    $this->session->set_userdata('access', $session_access);
+                    $data['access'] = $this->session->userdata('access');
+                    $data['user'] = $this->session->userdata('user');
+                    $this->load->view('subsidiary',$data);
                 }
 	}
         
@@ -51,6 +55,13 @@ class Authenticate extends CI_Controller {
                 $this->form_validation->set_message('checkUser', "<div class='alert alert-info' role='alert'>Invalid username or password</div>");
                 return FALSE;
             }
+        }
+        
+        public function logout(){
+            $this->session->unset_userdata('user');
+            $this->session->unset_userdata('access');
+            $data['company_name'] = $this->config->item('company_name');
+            redirect('home', 'refresh');
         }
         
 }

@@ -6,16 +6,38 @@
         Purpose of the stylesheet follows.
 */
 
+
 root { 
     display: block;
 }
 
+.navbar {
+  height: 75px !important;
+}
+
 .mad-logo {
-    height: 100%;
+    height: 100px;
+    width: 100px;
     float: left;
+    margin-top: -30px;
 }
 
 .mad-company-name {
     float: left;
-    margin-left: 20px;
+    margin:10px 20px;
 }
+
+@media screen and (max-width: 500px) {
+    .mad-company-name {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-collapse {
+    z-index: 9999 !important;
+    background-color: #fff;
+    margin-top: 30px;
+  }
+}
+

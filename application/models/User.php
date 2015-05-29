@@ -18,7 +18,9 @@ class User extends CI_Model {
         
         public function saveRegistration($user){
             $this->db->insert('user',$user);
-            return $this->db->insert_id();
+            $id=$this->db->insert_id();
+            $query = $this->db->get_where('user', array('id' => $id));
+            return $query->row();
         }
        
 }

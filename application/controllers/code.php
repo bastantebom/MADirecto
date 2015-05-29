@@ -19,9 +19,14 @@ class Code extends CI_Controller {
           if($this->session->userdata('user')){   
             $data['company_name'] = $this->config->item('company_name');
             $data['company_address'] = $this->config->item('company_address');
+            $session_access = array('page'=>'marketing');
+            $this->session->set_userdata('access', $session_access);
+            $data['access'] = $this->session->userdata('access');
             $data['user'] = $this->session->userdata('user');
             $data['entries'] = $this->Entry->getAllCodes();
             $this->load->view('code',$data);
+          }else{
+            redirect('home', 'refresh');  
           }  
 	}
         

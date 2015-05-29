@@ -91,8 +91,7 @@
         <tbody>
             <?php
            // var $vehicle="Jeep";
-            $status="Used";
-            $class="danger"; 
+           
             foreach($entries as $entry){
               switch($entry['unitCode']){
                   case "LC":
@@ -132,9 +131,12 @@
                     $vehicle = "100cc Rusi Motorcycle";
                     break;
               }
-              if(empty($entry['userId'])){
+              if($entry['use']==0){
                   $status = "Available";
                   $class="success";
+              }else{
+                   $status="Used";
+                   $class="danger"; 
               }
               echo "<tr class='$class'><td>".$entry['userCode']."</td><td>".$entry['userId']."</td><td>".$vehicle."</td><td>".$entry['entryNumber']."</td><td>".$status."</td></tr>";
             }

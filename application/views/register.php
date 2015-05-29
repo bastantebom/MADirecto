@@ -17,6 +17,9 @@
       <div id="register" class="panel panel-default">
        <div class="panel-heading">Registration</div>
        <div class="panel-body">
+          <div class="col-sm-12">
+             <div class="registration-success alert-info hidden"></div>
+          </div> 
          <?php echo form_open('Register/save', array('id'=>'registrationForm')); ?>
          <h3>Validation Code</h3>  
          <hr/>
@@ -183,7 +186,8 @@
         
         <input type="hidden" id="type" name="user[type]" value="0" class="form-control" >
         <input type="hidden" id="date" name="user[date]" class="form-control" >
-         <input type="hidden" id="vehicle-cd" name="vehicle-cde" class="form-control" >
+        <input type="hidden" id="vehicle-cd" name="vehicle-cde" class="form-control" >
+        <input type="hidden" id="base-url" class="form-control" value="<?php echo base_url()?>" /> 
         
         <div class="row ">
           <div class="col-sm-12">

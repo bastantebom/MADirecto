@@ -15,16 +15,49 @@
  
     <!-- CONTENT  -->
     <div class="container">
-        <div class="col-md-4">
-           A
+       <div class="col-md-4">
+         <div class="row">
+           <div class="col-sm-12 col-md-12">
+             <div class="thumbnail">
+               <image src="<?php echo base_url('css/images/car-dealership.png')?>">
+               <div class="caption">
+                 <h4>M.A. Directo Car Dealership</h4>
+                 <p>...</p>
+                 <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+               </div>
+             </div>
+           </div>
+         </div>          
         </div>
         
         <div class="col-md-4">
-          B
+         <div class="row">
+           <div class="col-sm-12 col-md-12">
+             <div class="thumbnail">
+               <image src="<?php echo base_url('css/images/gallery.png')?>">
+               <div class="caption">
+                 <h4>M.A. Directo Luzon Car Gallery</h4>
+                 <p>...</p>
+                 <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+               </div>
+             </div>
+           </div>
+         </div>          
         </div>
         
         <div class="col-md-4">
-         C
+         <div class="row">
+           <div class="col-sm-12 col-md-12">
+             <div class="thumbnail">
+               <image src="<?php echo base_url('css/images/marketing.png')?>">
+               <div class="caption">
+                 <h4>M.A. Directo Marketing</h4>
+                 <p>Buy our Products and earn your Points to get your Car incentive</p>
+                 <p><a href="Subsidiary/marketing" class="btn btn-primary" role="button">Proceed</a></p>
+               </div>
+             </div>
+           </div>
+         </div>          
         </div>
         
     </div>
