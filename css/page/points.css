@@ -1,0 +1,31 @@
+.diagram-wrapper {
+   height: 500px;
+   overflow-x: scroll;
+}
+
+.ep, .bp, .tp {
+   border: 1px solid #eee;
+   margin: 5px 0px;
+   border-radius: 8px;
+}
+
+.topology-unit {
+   border: 1px solid #adadad;
+   background: #eaeaea;
+   border-radius: 30px; 
+   text-align: center;
+   padding: 8px 0;
+}
+
+.diag-line {
+    height: 15px;
+    padding: 0;
+    text-align: center;
+}
+
+.f-line {
+    border: 1px solid #adadad;
+    height: 100%;
+    width: 2px;
+    margin: auto;
+}

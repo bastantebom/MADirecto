@@ -9,7 +9,7 @@ class Authenticate extends CI_Controller {
 
 	public function __construct() {
             parent::__construct();
-            $this->load->model('User');
+            $this->load->model('User_model');
             $this->load->library('session');
             $this->load->helper('url');
             $this->load->helper('date');
@@ -39,7 +39,7 @@ class Authenticate extends CI_Controller {
         
         public function checkUser($password){
             $username = $this->input->post('uname');
-            $result = $this->User->exist($username,$password);
+            $result = $this->User_model->exist($username,$password);
             //echo $result->id.$result->type.$result->lastname.$result->firstname.$result->middlename;
             if($result){
                 $session_user = array(

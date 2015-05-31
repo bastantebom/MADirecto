@@ -38,6 +38,7 @@ root {
     z-index: 9999 !important;
     background-color: #fff;
     margin-top: 30px;
+    position: relative;
   }
 }
 

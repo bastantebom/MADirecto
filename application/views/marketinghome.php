@@ -16,9 +16,9 @@
     <!-- CONTENT  -->
     <div class="container">
        <div id="register" class="panel panel-default">
-        <div class="panel-heading"><h4>M.A. Directo Marketing</h4></div>
+        <div class="panel-heading">M.A. Directo Marketing</div>
          <div class="panel-body">
-           
+           <img width="100%"  src="<?php echo base_url('css/images/banner/marketinghome.jpg')?>" />
          </div>
        </div>
     </div>

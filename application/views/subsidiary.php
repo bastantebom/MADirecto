@@ -2,7 +2,7 @@
   // This will include the opening tags (HTML, HEAD) 
   include "includes/header.php";
 ?>
-<link rel="stylesheet" href="<?php echo base_url('css/page/subsidiary.css')?>">
+<link rel="stylesheet" href="<?php //echo base_url('css/page/subsidiary.css')?>">
 
 <!-- Custom CSS for the page -->
 
@@ -53,7 +53,7 @@
                <div class="caption">
                  <h4>M.A. Directo Marketing</h4>
                  <p>Buy our Products and earn your Points to get your Car incentive</p>
-                 <p><a href="Subsidiary/marketing" class="btn btn-primary" role="button">Proceed</a></p>
+                 <p><a href="<?php echo base_url().'index.php/subsidiary/marketing'?>" class="btn btn-primary" role="button">Proceed</a></p>
                </div>
              </div>
            </div>
@@ -63,7 +63,7 @@
     </div>
        
      <?php include "includes/js.php" ?>
-    <script src="<?php echo base_url('js/page/subsidiary.js')?>"></script>
+    <script src="<?php //echo base_url('js/page/subsidiary.js')?>"></script>
    
 <!-- This will include the closing tags -->    
 <?php include "includes/bottom.php" ?>

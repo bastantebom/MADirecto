@@ -9,7 +9,7 @@ class Code extends CI_Controller {
 
 	public function __construct() {
             parent::__construct();
-            $this->load->model('Entry');
+            $this->load->model('Entry_model');
             $this->load->helper('date');
             $this->load->helper('form');
             $this->load->helper('url');
@@ -23,7 +23,7 @@ class Code extends CI_Controller {
             $this->session->set_userdata('access', $session_access);
             $data['access'] = $this->session->userdata('access');
             $data['user'] = $this->session->userdata('user');
-            $data['entries'] = $this->Entry->getAllCodes();
+            $data['entries'] = $this->Entry_model->getAllCodes();
             $this->load->view('code',$data);
           }else{
             redirect('home', 'refresh');  
@@ -32,7 +32,7 @@ class Code extends CI_Controller {
         
         public function count(){
           if($this->session->userdata('user')){   
-           $result = $this->Entry->count($this->input->post('code'));
+           $result = $this->Entry_model->count($this->input->post('code'));
            echo json_encode($result);
           }  
         }
@@ -43,7 +43,7 @@ class Code extends CI_Controller {
         
         public function save(){
           if($this->session->userdata('user')){  
-           $result = $this->Entry->save(json_decode($this->input->post('entries')));
+           $result = $this->Entry_model->save(json_decode($this->input->post('entries')));
           } 
         }
         

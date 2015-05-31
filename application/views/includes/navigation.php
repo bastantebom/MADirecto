@@ -20,19 +20,20 @@
       <ul class="nav navbar-nav navbar-right">
         <?php if(!isset($user['type'])) { ?>
           <li><a href="<?php echo base_url()?> ">Home</a></li>
-          <li><a href="<?php echo base_url().'index.php/Register/'?> ">Register</a></li>
-          <li><a href="<?php echo base_url().'index.php/Login/'?> ">Login</a></li>
+          <li><a href="<?php echo base_url().'index.php/register/'?> ">Register</a></li>
+          <li><a href="<?php echo base_url().'index.php/login/'?> ">Login</a></li>
         <?php } else { ?>
               <li><a href="<?php echo base_url()?> ">Home</a></li>
               <?php if($access['page']=="marketing") { ?>
-               <li><a href="<?php echo base_url().'index.php/Register/'?> ">Register</a></li>
+               <li><a href="<?php echo base_url().'index.php/register/'?> ">Register</a></li>
+               <li><a href="<?php echo base_url().'index.php/points/'?> ">View Points</a></li>
               <?php } ?> 
               <?php if($user['type']==1) { ?>
                   <?php if($access['page']=="marketing") { ?>
-                   <li><a href="<?php echo base_url().'index.php/Code/'?> ">Code</a></li>
+                   <li><a href="<?php echo base_url().'index.php/code/'?> ">Code</a></li>
                   <?php } ?>
               <?php } ?>
-              <li><a href="<?php echo base_url().'index.php/Authenticate/logout'?> ">Logout</a></li>
+              <li><a href="<?php echo base_url().'index.php/authenticate/logout'?> ">Logout</a></li>
         <?php } ?>
       </ul>
     </div><!-- /.navbar-collapse -->

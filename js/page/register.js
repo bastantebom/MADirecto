@@ -18,7 +18,7 @@ Register.validateCode=function(){
    $.ajax({ 
      url:'validateCode',
      type:'POST',
-     data: {'validationCode':$('#validation-code-input').val()},			
+     data: {'validationCode':$('.validation-code-input').val()},			
      success:function(isValid){	
         if(isValid == "-1"){
             $(".entry-vehicle").html("Not a Valid Code");
@@ -26,10 +26,37 @@ Register.validateCode=function(){
         }else{
             //console.log(isValid);
             //Register.getVehicleName(isValid);
-            $('#vehicle-cd').val(isValid);
+            $('.vehicle-cd').val(isValid);
             $(".entry-vehicle").html("Registration code for a " +  Register.getVehicleName(isValid));
             $('.entry-vehicle').css('visibility','visible').hide().fadeIn().removeClass('hidden');
             $('#registerSave').removeClass('disabled');
+            $('#registerExisting').removeClass('disabled');
+        }
+     },
+     error:function(isValid){
+        alert("Error");
+     }
+   });  
+};
+
+Register.validateCodeExisting=function(){
+    //alert("trigger");
+   $.ajax({ 
+     url:'validateCode',
+     type:'POST',
+     data: {'validationCode':$('.validation-code-input-existing').val()},			
+     success:function(isValid){	
+        if(isValid == "-1"){
+            $(".entry-vehicle").html("Not a Valid Code");
+            $('.entry-vehicle').css('visibility','visible').hide().fadeIn().removeClass('hidden');
+        }else{
+            //console.log(isValid);
+            //Register.getVehicleName(isValid);
+            $('.existing-vehicle-code').val(isValid);
+            $(".entry-vehicle").html("Registration code for a " +  Register.getVehicleName(isValid));
+            $('.entry-vehicle').css('visibility','visible').hide().fadeIn().removeClass('hidden');
+            $('#registerSave').removeClass('disabled');
+            $('#registerExisting').removeClass('disabled');
         }
      },
      error:function(isValid){
@@ -90,27 +117,30 @@ Register.checkCredentialUse=function(){
  
  if(c.trim()==p.trim()){
   $.ajax({ 
-     url:'checkCredential',
+     url:'check_credential',
      type:'POST',
      async: false,
-     data: {'u': u ,'p': p},			
+     data: {'u': u ,'p': p},
      success:function(isExist){
         var user = $.parseJSON(isExist);
         //console.log($.isEmptyObject(user)); 
         if($.isEmptyObject(user)){
            $('#registrationForm').ajaxSubmit({
                success:  function(data){
-                     var newUserParse = $.parseJSON(data);
-                     if($.isEmptyObject(newUserParse.newUser)){
-                       $(".registration-success").html("<h5>Registration is successful.</h5>");  
+                     //var newUserParse = $.parseJSON(data);
+                     var n = data.indexOf("##");
+                     if(n==-1){
+                        $(".registration-success").html("<h5>Registration is successful. You can continue as <a href='"+$('#base-url').val()+"index.php/subsidiary/marketing'>   Continue as User </a></h5>");
                      }
                      else{
-                      // console.log("-------------------------------------" + newUser.newUser);
-                       var name = newUserParse.newUser.firstname +" "+ newUserParse.newUser.lastname;
-                       $(".registration-success").html("<h5>Registration is successful. You can continue as <a href='"+$('#base-url').val()+"index.php/Subsidiary/marketing'> " +  name + "</a></h5>");
+                       //console.log("-------------------------------------" + newUser.newUser);
+                       //var name = newUserParse.newUser.firstname +" "+ newUserParse.newUser.lastname;
+                       $(".registration-success").html("<h5>Registration is successful. You can continue as <a href='"+$('#base-url').val()+"index.php/subsidiary/marketing'>   Continue as User </a></h5>");
                      }
                    $("input[type=text]").val("");  
                    $('.registration-success').css('visibility','visible').hide().fadeIn().removeClass('hidden');
+                   $('#registerSave').addClass('disabled');
+                   $('#registerExisting').addClass('disabled');
                },
                error: function(data){
                    console.log(data);
@@ -120,7 +150,7 @@ Register.checkCredentialUse=function(){
             $("#messageContainer").html("");
             $("#messageContainer").html("Password and Username already exist");
             $("#message").modal('toggle'); 
-       }
+        }
      },
      error:function(isExist){
         alert("Error");
@@ -136,6 +166,25 @@ Register.checkCredentialUse=function(){
 
 Register.saveUser=function(){
  Register.checkCredentialUse();
+};
+
+Register.saveForExisting=function(){
+   alert($('.validation-code-input-existing').val() + $('.existing-vehicle-code').val() + $('.existing-id').val());
+   $.ajax({ 
+     url:'saveExistingUser',
+     type:'POST',
+     data: {'validationCode':$('.validation-code-input-existing').val(), 'id':$('.existing-id').val(), 'vehicleCode':$('.existing-vehicle-code').val()},			
+     success:function(message){	
+        $(".registration-success").html("<h5>"+message+"</h5>");
+        $('.registration-success').css('visibility','visible').hide().fadeIn().removeClass('hidden');
+        $("input[type=text]").val(""); 
+        $('#registerSave').addClass('disabled');
+        $('#registerExisting').addClass('disabled');
+     },
+     error:function(message){
+        alert("Error");
+     }
+   });  
 };
 
 $(document).ready(function(){

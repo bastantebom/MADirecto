@@ -132,12 +132,20 @@
                     break;
               }
               if($entry['use']==0){
+                  $class="warning";
                   $status = "Available";
-                  $class="success";
               }else{
-                   $status="Used";
-                   $class="danger"; 
+                  $class="success"; 
+                  $status = "Use Already";
               }
+              
+              if($entry['status']=="Graduate"){
+                  $class="danger"; 
+                  $status = $entry['status'];
+              }
+              
+              
+              
               echo "<tr class='$class'><td>".$entry['userCode']."</td><td>".$entry['userId']."</td><td>".$vehicle."</td><td>".$entry['entryNumber']."</td><td>".$status."</td></tr>";
             }
             ?>

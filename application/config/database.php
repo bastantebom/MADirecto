@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'madirecto';
+$db['default']['username'] = 'madirt_madirecto';
 $db['default']['password'] = 'madirecto';
-$db['default']['database'] = 'madirecto';
+$db['default']['database'] = 'madirt_madirecto';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

@@ -11,7 +11,7 @@
      <?php include "includes/navigation.php" ?>
     <!-- CONTENT  -->
     <div class="container">
-      <?php echo form_open('Authenticate'); ?>
+      <?php echo form_open('authenticate'); ?>
            <div class="form-signin">
                
                <?php 
@@ -30,7 +30,7 @@
 			<input type="password" id="password" class="form-control"  required="" name='password' />
 		    </div>
 	     <button class="btn btn-lg btn-primary btn-block os-login-button" type="submit" name="submit" >Login</button>
-             <p class="not-member">Not A member?<a href="<?php echo base_url().'index.php/Register/'?>" >Register</a><p>
+             <p class="not-member">Not A member?<a href="<?php echo base_url().'index.php/register/'?>" >Register</a><p>
            </div>       
       <?php echo form_close(); ?>
     </div>

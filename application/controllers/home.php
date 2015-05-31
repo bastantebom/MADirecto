@@ -15,9 +15,19 @@ class Home extends CI_Controller {
         }
          
 	public function index(){
-            $data['company_name'] = $this->config->item('company_name');
-            //$data['company_address'] = $this->config->item('company_address');
-            $this->load->view('home',$data);
+            if($this->session->userdata('user')){    
+              $data['company_name'] = $this->config->item('company_name');
+              $data['company_address'] = $this->config->item('company_address');
+              $session_access = array('page'=>'marketing');
+              $this->session->set_userdata('access', $session_access);
+              $data['access'] = $this->session->userdata('access');
+              $data['user'] = $this->session->userdata('user');
+              $this->load->view('home',$data);
+           }else{
+              $data['company_name'] = $this->config->item('company_name');
+              $data['company_address'] = $this->config->item('company_address');
+              $this->load->view('home',$data);
+           }
 	}
         
 }

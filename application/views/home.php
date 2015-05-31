@@ -29,19 +29,17 @@
           <div class="row">
             <h2>News</h2>
             <ul class="bxslider">
-              <li><img src="<?php echo base_url('css/images/beneficiaries/1.jpg')?>" /></li>
-              <li><img src="<?php echo base_url('css/images/beneficiaries/2.jpg')?>" /></li>
-              <li><img src="<?php echo base_url('css/images/beneficiaries/3.jpg')?>" /></li>
-              <li><img src="<?php echo base_url('css/images/beneficiaries/4.jpg')?>" /></li>
+              <li><img src="<?php echo base_url('css/images/raffles/1.jpg')?>" /></li>
+              <li><img src="<?php echo base_url('css/images/raffles/2.jpg')?>" /></li>
+              <li><img src="<?php echo base_url('css/images/raffles/3.jpg')?>" /></li>
             </ul>
           </div>
           <div class="row">
             <h2>Raffle</h2>
             <ul class="bxslider">
-              <li><img src="<?php echo base_url('css/images/beneficiaries/1.jpg')?>" /></li>
-              <li><img src="<?php echo base_url('css/images/beneficiaries/2.jpg')?>" /></li>
-              <li><img src="<?php echo base_url('css/images/beneficiaries/3.jpg')?>" /></li>
-              <li><img src="<?php echo base_url('css/images/beneficiaries/4.jpg')?>" /></li>
+              <li><img src="<?php echo base_url('css/images/raffles/1.jpg')?>" /></li>
+              <li><img src="<?php echo base_url('css/images/raffles/2.jpg')?>" /></li>
+              <li><img src="<?php echo base_url('css/images/raffles/3.jpg')?>" /></li>
             </ul>
           </div>
         </div>

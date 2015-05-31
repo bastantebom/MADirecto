@@ -14,8 +14,8 @@
 | path to your installation.
 |
 */
+//$config['base_url']	= 'http://madirectogc.com/';
 $config['base_url']	= 'http://localhost:85/MADirecto';
-
 /*
 |--------------------------------------------------------------------------
 | Index File
